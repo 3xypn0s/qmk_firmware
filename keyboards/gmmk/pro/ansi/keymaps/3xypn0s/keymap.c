@@ -182,9 +182,9 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     ,[REST] = LAYOUT(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
-        XXXXXXX,  BL_TOGG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  XXXXXXX,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
-        XXXXXXX,  RGB_TOG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  XXXXXXX,  XXXXXXX,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
-        XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
+        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
+        XXXXXXX,  RGB_TOG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  XXXXXXX,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
+        XXXXXXX,            BL_TOGG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  XXXXXXX,  NK_TOGG,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
         XXXXXXX,  XXXXXXX,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  RGB_VAD,  RGB_RMOD, RGB_VAI
                  )
     /*
@@ -419,6 +419,39 @@ bool get_rgb_match_gpbt_pastel(void) {
                         }
                         for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
                             rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
+                        }
+                        // Show active start_layer
+                        switch(user_config.start_layer) {
+                            case BLAN:
+                                rgb_matrix_set_color(LED_Q, RGB_GREEN);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                            case BLMA:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_GREEN);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                            case BLAI:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_GREEN);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                            case BMAI:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_GREEN);
+                                break;
+                            default:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
                         }
                         break;
                     default:
