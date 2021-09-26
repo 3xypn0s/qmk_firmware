@@ -41,8 +41,9 @@ enum custom_user_keycodes {
     KC_00 = SAFE_RANGE,
     KC_WINLCK,      //Toggles Win key on and off
     RGB_NITE,       // Turns off all rgb but allow rgb indicators to work
-    RGB_MAKC,        // Activates rgb match keycaps mode
-    RGB_SOWL        // Show Layer State by LED (if RGB is on)
+    RGB_MAKC,       // Activates rgb match keycaps mode
+    RGB_SOWL,       // Show Layer State by LED (if RGB is on)
+    NE_RGBT         // Toggle RGB lighting on or off, but without write to EEPROM
 };
 
 // clang-format off
@@ -121,7 +122,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   KC_F21,   KC_F22,   KC_F23,   KC_F24,   _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            KC_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGB_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  NE_RGBT,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), KC_HOME,  KC_PGDN,  KC_END
                  )
@@ -130,7 +131,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            MK_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGB_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  NE_RGBT,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), MK_HOME,  G(KC_DOWN), MK_END
                  )
@@ -139,7 +140,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   AI_F21,   AI_F22,   AI_F23,   AI_F24,   _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            AI_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGB_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  NE_RGBT,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), KC_HOME,  AI_PGDN,  AI_END
                  )
@@ -148,7 +149,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            MA_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGB_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  NE_RGBT,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), MA_HOME,  G(KC_DOWN), MA_END
                  )
@@ -164,7 +165,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     
     ,[REST] = LAYOUT(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
-        XXXXXXX,  TO(BLAN), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
+        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
         XXXXXXX,  BL_TOGG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  XXXXXXX,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
         XXXXXXX,  RGB_TOG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  XXXXXXX,  XXXXXXX,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
         XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
@@ -237,21 +238,28 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 
 // RGB NIGHT MODE
 #ifdef RGB_MATRIX_ENABLE
-    static bool rgb_nightmode = false;
-    static bool rgb_layer_state = true;
-    static bool rgb_match_keycaps_gpbt_pastel = false;
+static bool rgb_nightmode = false;
+static bool rgb_off_mode = false;
+static bool rgb_layer_state = true;
+static bool rgb_match_keycaps_gpbt_pastel = false;
 
-    void activate_rgb_nightmode (bool turn_on) {
-        if (rgb_nightmode != turn_on) {
-            rgb_nightmode = !rgb_nightmode;
-        }
+void activate_rgb_nightmode (bool turn_on) {
+    if (rgb_nightmode != turn_on) {
+        rgb_nightmode = !rgb_nightmode;
     }
+}
 
-    void activate_rgb_layer_state (bool turn_on) {
-        if (rgb_layer_state != turn_on) {
-            rgb_layer_state = !rgb_layer_state;
-        }
+void activate_rgb_off_mode (bool turn_on) {
+    if (rgb_off_mode != turn_on) {
+        rgb_off_mode = !rgb_off_mode;
     }
+}
+
+void activate_rgb_layer_state (bool turn_on) {
+    if (rgb_layer_state != turn_on) {
+        rgb_layer_state = !rgb_layer_state;
+    }
+}
 
 void activate_rgb_match_gpbt_pastel (bool turn_on) {
     if (rgb_match_keycaps_gpbt_pastel != turn_on) {
@@ -259,13 +267,17 @@ void activate_rgb_match_gpbt_pastel (bool turn_on) {
     }
 }
 
-    bool get_rgb_nightmode(void) {
-        return rgb_nightmode;
-    }
+bool get_rgb_nightmode(void) {
+    return rgb_nightmode;
+}
 
-    bool get_rgb_layer_state(void) {
-        return rgb_layer_state;
-    }
+bool get_rgb_off_mode(void) {
+    return rgb_off_mode;
+}
+
+bool get_rgb_layer_state(void) {
+    return rgb_layer_state;
+}
     
 bool get_rgb_match_gpbt_pastel(void) {
     return rgb_match_keycaps_gpbt_pastel;
@@ -274,92 +286,95 @@ bool get_rgb_match_gpbt_pastel(void) {
 
 #ifdef RGB_MATRIX_ENABLE
     void rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-        
-        if (get_rgb_nightmode()) {
+        if (get_rgb_off_mode()) {
             rgb_matrix_set_color_all(RGB_OFF);
         } else {
-            if (get_rgb_match_gpbt_pastel()) {
-                for (uint8_t i=0; i<ARRAYSIZE(LED_KEYCAPS_GPBT_PASTEL_BLUE); i++) {
-                    rgb_matrix_set_color(LED_KEYCAPS_GPBT_PASTEL_BLUE[i], RGB_GP_BLUE);
-                }
-                for (uint8_t i=0; i<ARRAYSIZE(LED_KEYCAPS_GPBT_PASTEL_GREEN); i++) {
-                    rgb_matrix_set_color(LED_KEYCAPS_GPBT_PASTEL_GREEN[i], RGB_GP_GREEN);
-                }
-                for (uint8_t i=0; i<ARRAYSIZE(LED_KEYCAPS_GPBT_PASTEL_RED); i++) {
-                    rgb_matrix_set_color(LED_KEYCAPS_GPBT_PASTEL_RED[i], RGB_GP_RED);
-                }
-            }
-        }
-        
-        if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
-            rgb_matrix_set_color(LED_CAPS, RGB_CORAL);
-            rgb_matrix_set_color(LED_LSFT, RGB_CORAL);
-            rgb_matrix_set_color(LED_LCTL, RGB_CORAL);
-        }
-        
-        if (get_rgb_layer_state()) {
-            switch(get_highest_layer(layer_state)){  // special handling per layer
-                case BLAN:
-                    break;
-                case BLMA:
-                    break;
-                case FLAN:
-                    break;
-                case FLMA:
-                    break;
-                case BLAI:
-                    break;
-                case BMAI:
-                    break;
-                case YZAI:
-                    break;
-                case WORK:
-                    break;
-                case FNAI:
-                    break;
-                case FMAI:
-                    break;
-                case FNLY:
-                    rgb_matrix_set_color_all(RGB_OFF);
-                    break;
-                case NMPD:
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_LIST_NUMPAD); i++) {
-                        rgb_matrix_set_color(LED_LIST_NUMPAD[i], RGB_MAGENTA);
+            if (get_rgb_nightmode()) {
+                rgb_matrix_set_color_all(RGB_OFF);
+            } else {
+                if (get_rgb_match_gpbt_pastel()) {
+                    for (uint8_t i=0; i<ARRAYSIZE(LED_KEYCAPS_GPBT_PASTEL_BLUE); i++) {
+                        rgb_matrix_set_color(LED_KEYCAPS_GPBT_PASTEL_BLUE[i], RGB_GP_BLUE);
                     }
-                    rgb_matrix_set_color(LED_INS, RGB_MAGENTA);
-                    break;
-                case REST:
-                    rgb_matrix_set_color_all(RGB_OFF);
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
+                    for (uint8_t i=0; i<ARRAYSIZE(LED_KEYCAPS_GPBT_PASTEL_GREEN); i++) {
+                        rgb_matrix_set_color(LED_KEYCAPS_GPBT_PASTEL_GREEN[i], RGB_GP_GREEN);
                     }
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
+                    for (uint8_t i=0; i<ARRAYSIZE(LED_KEYCAPS_GPBT_PASTEL_RED); i++) {
+                        rgb_matrix_set_color(LED_KEYCAPS_GPBT_PASTEL_RED[i], RGB_GP_RED);
                     }
-                    break;
-                default:
-                    break;
+                }
             }
             
-            show_layer_by_rgb();
-        } else {
-            switch(get_highest_layer(layer_state)){
-                case FNLY:
-                    rgb_matrix_set_color_all(RGB_OFF);
-                    show_layer_by_rgb();
-                    break;
-                case REST:
-                    rgb_matrix_set_color_all(RGB_OFF);
-                    show_layer_by_rgb();
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
-                    }
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
-                    }
-                    break;
-                default:
-                    break;
+            if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
+                rgb_matrix_set_color(LED_CAPS, RGB_CORAL);
+                rgb_matrix_set_color(LED_LSFT, RGB_CORAL);
+                rgb_matrix_set_color(LED_LCTL, RGB_CORAL);
+            }
+            
+            if (get_rgb_layer_state()) {
+                switch(get_highest_layer(layer_state)){  // special handling per layer
+                    case BLAN:
+                        break;
+                    case BLMA:
+                        break;
+                    case FLAN:
+                        break;
+                    case FLMA:
+                        break;
+                    case BLAI:
+                        break;
+                    case BMAI:
+                        break;
+                    case YZAI:
+                        break;
+                    case WORK:
+                        break;
+                    case FNAI:
+                        break;
+                    case FMAI:
+                        break;
+                    case FNLY:
+                        rgb_matrix_set_color_all(RGB_OFF);
+                        break;
+                    case NMPD:
+                        for (uint8_t i=0; i<ARRAYSIZE(LED_LIST_NUMPAD); i++) {
+                            rgb_matrix_set_color(LED_LIST_NUMPAD[i], RGB_MAGENTA);
+                        }
+                        rgb_matrix_set_color(LED_INS, RGB_MAGENTA);
+                        break;
+                    case REST:
+                        rgb_matrix_set_color_all(RGB_OFF);
+                        for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
+                            rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
+                        }
+                        for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
+                            rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                
+                show_layer_by_rgb();
+            } else {
+                switch(get_highest_layer(layer_state)){
+                    case FNLY:
+                        rgb_matrix_set_color_all(RGB_OFF);
+                        show_layer_by_rgb();
+                        break;
+                    case REST:
+                        rgb_matrix_set_color_all(RGB_OFF);
+                        show_layer_by_rgb();
+                        for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
+                            rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
+                        }
+                        for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
+                            rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
+                        }
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -400,6 +415,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  rgb_layer_state = !rgb_layer_state;
              } else  unregister_code16(keycode);
              break;
+         case NE_RGBT:
+              if(record->event.pressed) {
+                  rgb_off_mode = !rgb_off_mode;
+              } else  unregister_code16(keycode);
+              break;
 #endif // RGB_MATRIX_ENABLE
     default:
              /*
