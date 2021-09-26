@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "rgb_matrix_map.h"
 #include "custom_keymap.h"
 
+// clang-format off
+
 // LAYERS
 enum custom_user_layers {
     BLAN,       // Base Layer ANSI Keyboard and ANSI Layout configured in OS
@@ -43,8 +45,22 @@ enum custom_user_keycodes {
     RGB_NITE,       // Turns off all rgb but allow rgb indicators to work
     RGB_MAKC,       // Activates rgb match keycaps mode
     RGB_SOWL,       // Show Layer State by LED (if RGB is on)
-    NE_RGBT         // Toggle RGB lighting on or off, but without write to EEPROM
+    NE_RGBT,        // Toggle RGB lighting on or off, but without write to EEPROM
+    SL_BLAN,        // Set start_layer to BLAN
+    SL_BLMA,        // Set start_layer to BLMA
+    SL_BLAI,        // Set start_layer to BLAI
+    SL_BMAI         // Set start_layer to BMAI
 };
+
+// User settings for EEPROM
+typedef union {
+  uint32_t raw;
+  struct {
+      uint8_t start_layer : 8;
+  };
+} user_config_t;
+
+user_config_t user_config;
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -165,7 +181,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     
     ,[REST] = LAYOUT(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
+        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
         XXXXXXX,  BL_TOGG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  XXXXXXX,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
         XXXXXXX,  RGB_TOG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  XXXXXXX,  XXXXXXX,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
         XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
@@ -350,6 +366,39 @@ bool get_rgb_match_gpbt_pastel(void) {
                         for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
                             rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
                         }
+                        // Show active start_layer
+                        switch(user_config.start_layer) {
+                            case BLAN:
+                                rgb_matrix_set_color(LED_Q, RGB_GREEN);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                            case BLMA:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_GREEN);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                            case BLAI:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_GREEN);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                            case BMAI:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_GREEN);
+                                break;
+                            default:
+                                rgb_matrix_set_color(LED_Q, RGB_RED);
+                                rgb_matrix_set_color(LED_W, RGB_RED);
+                                rgb_matrix_set_color(LED_E, RGB_RED);
+                                rgb_matrix_set_color(LED_R, RGB_RED);
+                                break;
+                        }
                         break;
                     default:
                         break;
@@ -398,7 +447,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 keymap_config.no_gui = !keymap_config.no_gui; //toggle status
             } else  unregister_code16(keycode);
             break;
-
+         case SL_BLAN:
+             if (record->event.pressed) {
+                 set_start_layer(BLAN); // Set start_layer to BLAN
+             } else  unregister_code16(keycode);
+             break;
+         case SL_BLMA:
+             if (record->event.pressed) {
+                 set_start_layer(BLMA); // Set start_layer to BLMA
+             } else  unregister_code16(keycode);
+             break;
+         case SL_BLAI:
+             if (record->event.pressed) {
+                 set_start_layer(BLAI); // Set start_layer to BLAI
+             } else  unregister_code16(keycode);
+             break;
+         case SL_BMAI:
+             if (record->event.pressed) {
+                 set_start_layer(BMAI); // Set start_layer to BMAI
+             } else  unregister_code16(keycode);
+             break;
 #ifdef RGB_MATRIX_ENABLE
         case RGB_NITE:
             if(record->event.pressed) {
@@ -635,6 +703,14 @@ void show_layer_by_rgb(void) {
     #endif
 }
 
+void set_start_layer(uint8_t layer) {
+    // Only update, if new layer is not equal to stored variable (to protect EEPROM)
+    if (user_config.start_layer != layer) {
+        user_config.start_layer = layer;        // set new value
+        eeconfig_update_user(user_config.raw);  // write new status to EEPROM
+    }
+}
+
 // INITIAL STARTUP
 
 void keyboard_post_init_user(void) {
@@ -643,5 +719,13 @@ void keyboard_post_init_user(void) {
         rgb_matrix_set_color_all(RGB_GREENYELLOW); // Default startup colour
         activate_rgb_nightmode(true);  // Set to true if you want to startup in nightmode, otherwise use Fn + Z to toggle
     #endif
-     layer_move(BLAI);     // Turns specified layer on, and all other layers off.
+        user_config.raw = eeconfig_read_user();     // Read the user config from EEPROM
+        layer_move(user_config.start_layer);        // Turns specified start layer on, and all other layers off.
+}
+
+// Set default values for EEPROM
+void eeconfig_init_user(void) { // EEPROM is getting reset!
+    user_config.raw         = 0;
+    user_config.start_layer = BLAI;         // Default start_layer
+    eeconfig_update_user(user_config.raw);  // Write default value to EEPROM
 }

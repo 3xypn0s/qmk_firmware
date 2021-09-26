@@ -613,6 +613,7 @@
 
 #define ARRAYSIZE(arr) sizeof(arr)/sizeof(arr[0])
 
+void set_start_layer(uint8_t layer);
 #ifdef RGB_MATRIX_ENABLE
 void activate_rgb_nightmode (bool turn_on);
 void activate_rgb_off_mode (bool turn_on);
