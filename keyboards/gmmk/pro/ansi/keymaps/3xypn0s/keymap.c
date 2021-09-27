@@ -151,7 +151,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            KC_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), KC_HOME,  KC_PGDN,  KC_END
                  )
     
@@ -160,7 +160,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            MK_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), MK_HOME,  G(KC_DOWN), MK_END
                  )
     
@@ -169,7 +169,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            AI_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), KC_HOME,  AI_PGDN,  AI_END
                  )
     
@@ -178,17 +178,17 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            MA_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), MA_HOME,  G(KC_DOWN), MA_END
                  )
     
     ,[RGBL] = LAYOUT(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
-        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RGN_VAD,  RGN_VAI,  _______,            _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RGN_SPD,  RGN_SPI,  _______,            RGN_SAI,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            RGN_SAD,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  RGN_MOD,  _______,
+        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  RGN_HUD,  RGN_RMOD, RGN_HUI
                  )
     
     ,[FNLY] = LAYOUT(
@@ -204,9 +204,9 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
-        XXXXXXX,  RGB_TOG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  XXXXXXX,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
-        XXXXXXX,            BL_TOGG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  XXXXXXX,  NK_TOGG,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
-        XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  RGB_VAD,  RGB_RMOD, RGB_VAI
+        XXXXXXX,  RGB_TOG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  RGB_VAI,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
+        XXXXXXX,            BL_TOGG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  RGB_VAD,  NK_TOGG,  XXXXXXX,  RGB_RMOD, RGB_MOD,  XXXXXXX,            XXXXXXX,  XXXXXXX,  CK_KOTG,
+        XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX
                  )
     /*
     ,[EMPTY] = LAYOUT(
@@ -791,8 +791,8 @@ void set_start_layer(uint8_t layer) {
 
 void keyboard_post_init_user(void) {
     #ifdef RGB_MATRIX_ENABLE
-        // rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-        rgb_matrix_set_color_all(RGB_GREENYELLOW); // Default startup color
+        // rgb_matrix_mode(RGB_MATRIX_JELLYBEAN_RAINDROPS);
+        // rgb_matrix_set_color_all(RGB_GREENYELLOW); // Default startup color
         activate_rgb_nightmode(true);  // Set to true if you want to startup in nightmode, otherwise use Fn + Z to toggle
     #endif
         user_config.raw = eeconfig_read_user();     // Read the user config from EEPROM
