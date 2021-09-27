@@ -155,7 +155,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )*/
 	,[_FN] = LAYOUT_numpad_6x5(
         RESET,    _______,       _______,        _______,       TG(_NUMLOCK),
-        EEP_RST,  _______,       _______,        _______,       _______,
+        _______,  _______,       _______,        _______,       _______,
         _______,  TG(_GAMING),   TG(_BF4),       XXXXXXX,
         _______,  XXXXXXX,       XXXXXXX,        XXXXXXX,       _______,
         RGB_TOG,  TG(_WINDOWS),  XXXXXXX,        XXXXXXX,
