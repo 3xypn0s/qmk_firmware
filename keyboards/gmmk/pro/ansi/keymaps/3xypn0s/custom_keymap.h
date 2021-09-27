@@ -622,4 +622,5 @@ bool get_rgb_nightmode(void);
 bool get_rgb_layer_state(void);
 bool get_rgb_match_gpbt_pastel(void);
 void show_layer_by_rgb(void);
+void rgb_rest_layer(void);
 #endif

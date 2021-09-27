@@ -44,8 +44,10 @@ enum custom_user_keycodes {
     KC_00 = SAFE_RANGE,
     KC_WINLCK,      //Toggles Win key on and off
     RGC_NITE,       // Turns off all rgb but allow rgb indicators to work
+    RGE_NITE,       // Turns off all rgb but allow rgb indicators to work (and save state to EEPROM)
     RGC_MAKC,       // Activates rgb match keycaps mode
     RGC_SOWL,       // Show Layer State by LED (if RGB is on)
+    RGE_SOWL,       // Show Layer State by LED (if RGB is on) (and save state to EEPROM)
     RGN_TOG,        // Toggle RGB lighting on or off, but without write to EEPROM rgb_matrix_toggle_noeeprom()
     RGN_MOD,        // Cycle through modes, reverse direction when Shift is held (no EEPROM mode)
     RGN_RMOD,       // Cycle through modes in reverse, forward direction when Shift is held (no EEPROM mode)
@@ -68,7 +70,11 @@ enum custom_user_keycodes {
 typedef union {
   uint32_t raw;
   struct {
-      uint8_t start_layer : 8;
+      uint8_t   start_layer : 8;
+#ifdef RGB_MATRIX_ENABLE
+      bool      rgb_nightmode : 1;
+      bool      rgb_layer_state : 1;
+#endif
   };
 } user_config_t;
 
@@ -203,9 +209,9 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     ,[REST] = LAYOUT(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
-        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
-        XXXXXXX,  RGB_TOG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  RGB_VAI,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
-        XXXXXXX,            BL_TOGG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  RGB_VAD,  NK_TOGG,  XXXXXXX,  RGB_RMOD, RGB_MOD,  XXXXXXX,            XXXXXXX,  XXXXXXX,  CK_KOTG,
+        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  RGB_SPD,  RGB_SPI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
+        XXXXXXX,  RGB_TOG,  RGE_SOWL, XXXXXXX,  RGB_HUI,  RGB_VAI,  NK_OFF,   XXXXXXX,  RGB_VAD,  RGB_VAI,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
+        XXXXXXX,            RGE_NITE, XXXXXXX,  XXXXXXX,  RGB_HUD,  RGB_VAD,  NK_TOGG,  XXXXXXX,  RGB_RMOD, RGB_MOD,  XXXXXXX,            XXXXXXX,  XXXXXXX,  CK_KOTG,
         XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX
                  )
     /*
@@ -273,9 +279,8 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 */
 
 
-// RGB NIGHT MODE
 #ifdef RGB_MATRIX_ENABLE
-static bool rgb_nightmode = false;
+static bool rgb_nightmode = true;
 static bool rgb_layer_state = true;
 static bool rgb_match_keycaps_gpbt_pastel = false;
 
@@ -307,6 +312,122 @@ bool get_rgb_layer_state(void) {
     
 bool get_rgb_match_gpbt_pastel(void) {
     return rgb_match_keycaps_gpbt_pastel;
+}
+
+void show_layer_by_rgb(void) {
+    if (IS_LAYER_ON(BLAN)) {
+        rgb_matrix_set_color(LED_1, RGB_SPRINGGREEN);
+    }
+
+    if (IS_LAYER_ON(FLAN)) {
+        rgb_matrix_set_color(LED_F1, RGB_SPRINGGREEN);
+    }
+
+    if (IS_LAYER_ON(BLMA)) {
+        rgb_matrix_set_color(LED_2, RGB_SPRINGGREEN);
+    }
+
+    if (IS_LAYER_ON(FLMA)) {
+        rgb_matrix_set_color(LED_F2, RGB_SPRINGGREEN);
+    }
+
+    if (IS_LAYER_ON(BLAI)) {
+        rgb_matrix_set_color(LED_3, RGB_AZURE);
+    }
+
+    if (IS_LAYER_ON(FNAI)) {
+        rgb_matrix_set_color(LED_F3, RGB_AZURE);
+    }
+
+    if (IS_LAYER_ON(BMAI)) {
+        rgb_matrix_set_color(LED_4, RGB_AZURE);
+    }
+
+    if (IS_LAYER_ON(FMAI)) {
+        rgb_matrix_set_color(LED_F4, RGB_AZURE);
+    }
+
+    if (IS_LAYER_ON(YZAI)) {
+        rgb_matrix_set_color(LED_5, RGB_BLUE);
+    }
+
+    if (IS_LAYER_ON(WORK)) {
+        rgb_matrix_set_color(LED_6, RGB_CORAL);
+    }
+
+    if (IS_LAYER_ON(NMPD)) {
+        rgb_matrix_set_color(LED_7, RGB_CYAN);
+    }
+
+    if (IS_LAYER_ON(RGBL)) {
+        rgb_matrix_set_color(LED_F5, RGB_AZURE);
+        rgb_matrix_set_color(LED_F6, RGB_CYAN);
+        rgb_matrix_set_color(LED_F7, RGB_SPRINGGREEN);
+        rgb_matrix_set_color(LED_F8, RGB_GREEN);
+    }
+
+    if (IS_LAYER_ON(FNLY)) {
+        rgb_matrix_set_color(LED_F9, RGB_GREEN);
+        rgb_matrix_set_color(LED_F10, RGB_GREEN);
+    }
+
+    if (IS_LAYER_ON(REST)) {
+        rgb_matrix_set_color(LED_F11, RGB_RED);
+        rgb_matrix_set_color(LED_F12, RGB_RED);
+    }
+}
+
+void rgb_rest_layer(void){
+    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
+        rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
+    }
+    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
+        rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
+    }
+    // Show user_config in EEPROM:
+    // Show active start_layer
+    switch(user_config.start_layer) {
+        case BLAN:
+            rgb_matrix_set_color(LED_Q, RGB_GREEN);
+            rgb_matrix_set_color(LED_W, RGB_RED);
+            rgb_matrix_set_color(LED_E, RGB_RED);
+            rgb_matrix_set_color(LED_R, RGB_RED);
+            break;
+        case BLMA:
+            rgb_matrix_set_color(LED_Q, RGB_RED);
+            rgb_matrix_set_color(LED_W, RGB_GREEN);
+            rgb_matrix_set_color(LED_E, RGB_RED);
+            rgb_matrix_set_color(LED_R, RGB_RED);
+            break;
+        case BLAI:
+            rgb_matrix_set_color(LED_Q, RGB_RED);
+            rgb_matrix_set_color(LED_W, RGB_RED);
+            rgb_matrix_set_color(LED_E, RGB_GREEN);
+            rgb_matrix_set_color(LED_R, RGB_RED);
+            break;
+        case BMAI:
+            rgb_matrix_set_color(LED_Q, RGB_RED);
+            rgb_matrix_set_color(LED_W, RGB_RED);
+            rgb_matrix_set_color(LED_E, RGB_RED);
+            rgb_matrix_set_color(LED_R, RGB_GREEN);
+            break;
+        default:
+            rgb_matrix_set_color(LED_Q, RGB_RED);
+            rgb_matrix_set_color(LED_W, RGB_RED);
+            rgb_matrix_set_color(LED_E, RGB_RED);
+            rgb_matrix_set_color(LED_R, RGB_RED);
+            break;
+    }
+    if (user_config.rgb_nightmode) {
+        rgb_matrix_set_color(LED_Z, RGB_GREEN);
+    } else {
+        rgb_matrix_set_color(LED_Z, RGB_RED);
+    }
+    if (user_config.rgb_layer_state) {
+        rgb_matrix_set_color(LED_S, RGB_GREEN);
+    } else {
+        rgb_matrix_set_color(LED_S, RGB_RED);
+    }
 }
 #endif // RGB_MATRIX_ENABLE
 
@@ -347,50 +468,11 @@ bool get_rgb_match_gpbt_pastel(void) {
                     break;
                 case REST:
                     rgb_matrix_set_color_all(RGB_OFF);
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
-                    }
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
-                    }
-                    // Show active start_layer
-                    switch(user_config.start_layer) {
-                        case BLAN:
-                            rgb_matrix_set_color(LED_Q, RGB_GREEN);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                        case BLMA:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_GREEN);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                        case BLAI:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_GREEN);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                        case BMAI:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_GREEN);
-                            break;
-                        default:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                    }
+                    rgb_rest_layer();
                     break;
                 default:
                     break;
             }
-            
             show_layer_by_rgb();
         } else {
             switch(get_highest_layer(layer_state)){
@@ -401,45 +483,7 @@ bool get_rgb_match_gpbt_pastel(void) {
                 case REST:
                     rgb_matrix_set_color_all(RGB_OFF);
                     show_layer_by_rgb();
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_RIGHT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_RIGHT[i], RGB_RED);
-                    }
-                    for (uint8_t i=0; i<ARRAYSIZE(LED_SIDE_LEFT); i++) {
-                        rgb_matrix_set_color(LED_SIDE_LEFT[i], RGB_RED);
-                    }
-                    // Show active start_layer
-                    switch(user_config.start_layer) {
-                        case BLAN:
-                            rgb_matrix_set_color(LED_Q, RGB_GREEN);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                        case BLMA:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_GREEN);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                        case BLAI:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_GREEN);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                        case BMAI:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_GREEN);
-                            break;
-                        default:
-                            rgb_matrix_set_color(LED_Q, RGB_RED);
-                            rgb_matrix_set_color(LED_W, RGB_RED);
-                            rgb_matrix_set_color(LED_E, RGB_RED);
-                            rgb_matrix_set_color(LED_R, RGB_RED);
-                            break;
-                    }
+                    rgb_rest_layer();
                     break;
                 default:
                     break;
@@ -492,6 +536,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 rgb_nightmode = !rgb_nightmode;
             } else  unregister_code16(keycode);
             break;
+         case RGE_NITE:
+             if(record->event.pressed) {
+                 rgb_nightmode = !rgb_nightmode;
+                 if (user_config.rgb_nightmode != rgb_nightmode) {
+                     user_config.rgb_nightmode = rgb_nightmode; // Set status
+                     eeconfig_update_user(user_config.raw);     // Writes the new status to EEPROM
+                 }
+             } else  unregister_code16(keycode);
+             break;
          case RGC_MAKC:
              if(record->event.pressed) {
                  rgb_match_keycaps_gpbt_pastel = !rgb_match_keycaps_gpbt_pastel;
@@ -502,6 +555,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                  rgb_layer_state = !rgb_layer_state;
              } else  unregister_code16(keycode);
              break;
+         case RGE_SOWL:
+              if(record->event.pressed) {
+                  rgb_layer_state = !rgb_layer_state;
+                  if (user_config.rgb_layer_state != rgb_layer_state) {
+                      user_config.rgb_layer_state = rgb_layer_state;    // Set status
+                      eeconfig_update_user(user_config.raw);            // Writes the new status to EEPROM
+                  }
+              } else  unregister_code16(keycode);
+              break;
          case RGN_TOG:
               if(record->event.pressed) {
                   rgb_matrix_toggle_noeeprom();             // Toggle effect range LEDs between on and off (not written to EEPROM)
@@ -712,73 +774,6 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     NULL // Null terminate the array of overrides!
 };
 
-
-void show_layer_by_rgb(void) {
-    
-    #ifdef RGB_MATRIX_ENABLE
-        if (IS_LAYER_ON(BLAN)) {
-            rgb_matrix_set_color(LED_1, RGB_SPRINGGREEN);
-        }
-
-        if (IS_LAYER_ON(FLAN)) {
-            rgb_matrix_set_color(LED_F1, RGB_SPRINGGREEN);
-        }
-
-        if (IS_LAYER_ON(BLMA)) {
-            rgb_matrix_set_color(LED_2, RGB_SPRINGGREEN);
-        }
-
-        if (IS_LAYER_ON(FLMA)) {
-            rgb_matrix_set_color(LED_F2, RGB_SPRINGGREEN);
-        }
-
-        if (IS_LAYER_ON(BLAI)) {
-            rgb_matrix_set_color(LED_3, RGB_AZURE);
-        }
-
-        if (IS_LAYER_ON(FNAI)) {
-            rgb_matrix_set_color(LED_F3, RGB_AZURE);
-        }
-
-        if (IS_LAYER_ON(BMAI)) {
-            rgb_matrix_set_color(LED_4, RGB_AZURE);
-        }
-
-        if (IS_LAYER_ON(FMAI)) {
-            rgb_matrix_set_color(LED_F4, RGB_AZURE);
-        }
-
-        if (IS_LAYER_ON(YZAI)) {
-            rgb_matrix_set_color(LED_5, RGB_BLUE);
-        }
-
-        if (IS_LAYER_ON(WORK)) {
-            rgb_matrix_set_color(LED_6, RGB_CORAL);
-        }
-
-        if (IS_LAYER_ON(NMPD)) {
-            rgb_matrix_set_color(LED_7, RGB_CYAN);
-        }
-    
-        if (IS_LAYER_ON(RGBL)) {
-            rgb_matrix_set_color(LED_F5, RGB_AZURE);
-            rgb_matrix_set_color(LED_F6, RGB_CYAN);
-            rgb_matrix_set_color(LED_F7, RGB_SPRINGGREEN);
-            rgb_matrix_set_color(LED_F8, RGB_GREEN);
-        }
-
-        if (IS_LAYER_ON(FNLY)) {
-            rgb_matrix_set_color(LED_F9, RGB_GREEN);
-            rgb_matrix_set_color(LED_F10, RGB_GREEN);
-        }
-
-        if (IS_LAYER_ON(REST)) {
-            rgb_matrix_set_color(LED_F11, RGB_RED);
-            rgb_matrix_set_color(LED_F12, RGB_RED);
-        }
-    #endif
-}
-
 void set_start_layer(uint8_t layer) {
     // Only update, if new layer is not equal to stored variable (to protect EEPROM)
     if (user_config.start_layer != layer) {
@@ -790,18 +785,27 @@ void set_start_layer(uint8_t layer) {
 // INITIAL STARTUP
 
 void keyboard_post_init_user(void) {
-    #ifdef RGB_MATRIX_ENABLE
-        // rgb_matrix_mode(RGB_MATRIX_JELLYBEAN_RAINDROPS);
-        // rgb_matrix_set_color_all(RGB_GREENYELLOW); // Default startup color
-        activate_rgb_nightmode(true);  // Set to true if you want to startup in nightmode, otherwise use Fn + Z to toggle
-    #endif
-        user_config.raw = eeconfig_read_user();     // Read the user config from EEPROM
-        layer_move(user_config.start_layer);        // Turns specified start layer on, and all other layers off.
+    user_config.raw = eeconfig_read_user();             // Read the user config from EEPROM
+#ifdef RGB_MATRIX_ENABLE
+    //rgb_matrix_mode(RGB_MATRIX_JELLYBEAN_RAINDROPS);
+    //rgb_matrix_set_color_all(RGB_GREENYELLOW);        // Default startup color
+    activate_rgb_nightmode(user_config.rgb_nightmode);
+    activate_rgb_layer_state(user_config.rgb_layer_state);
+#endif
+    layer_move(user_config.start_layer);                // Turns specified start layer on, and all other layers off.
 }
 
 // Set default values for EEPROM
 void eeconfig_init_user(void) { // EEPROM is getting reset!
-    user_config.raw         = 0;
-    user_config.start_layer = BLAI;         // Default start_layer
+    user_config.raw             = 0;
+    user_config.start_layer     = BLAI;         // Default start_layer
+#ifdef RGB_MATRIX_ENABLE
+    user_config.rgb_nightmode   = true;
+    user_config.rgb_layer_state = true;
+#endif
     eeconfig_update_user(user_config.raw);  // Write default value to EEPROM
+#ifdef RGB_MATRIX_ENABLE
+    rgb_nightmode               = true;
+    rgb_layer_state             = true;
+#endif
 }
