@@ -34,6 +34,7 @@ enum custom_user_layers {
     FLMA,       // Fn   Layer ANSI Keyboard and ANSI Layout configured in MacOS
     FNAI,       // FN   Layer ANSI Keyboard and ISO (-GER) Layout configured in OS
     FMAI,       // FN   Layer ANSI Keyboard and ISO (-GER) Layout configured in MacOS
+    RGBL,       //      Layer for RGB
     FNLY,       // FN   Layer for switching layers
     REST,       // Reset Layer
 };
@@ -140,7 +141,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
-        _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), KC_HOME,  KC_PGDN,  KC_END
+        _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), KC_HOME,  KC_PGDN,  KC_END
                  )
     
 	,[FLMA] = LAYOUT(
@@ -149,7 +150,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
-        _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), MK_HOME,  G(KC_DOWN), MK_END
+        _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), MK_HOME,  G(KC_DOWN), MK_END
                  )
     
 	,[FNAI] = LAYOUT(
@@ -158,7 +159,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
-        _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), KC_HOME,  AI_PGDN,  AI_END
+        _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), KC_HOME,  AI_PGDN,  AI_END
                  )
     
     ,[FMAI] = LAYOUT(
@@ -167,7 +168,16 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
-        _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), MA_HOME,  G(KC_DOWN), MA_END
+        _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), MA_HOME,  G(KC_DOWN), MA_END
+                 )
+    
+    ,[RGBL] = LAYOUT(
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  _______,  _______,
+        _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  _______,  _______,  _______
                  )
     
     ,[FNLY] = LAYOUT(
@@ -176,7 +186,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         XXXXXXX,  XXXXXXX,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,            XXXXXXX,
         XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  XXXXXXX,  XXXXXXX,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX
+        XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX
                  )
     
     ,[REST] = LAYOUT(
@@ -185,7 +195,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
         XXXXXXX,  RGB_TOG,  RGB_VAI,  RGB_SPI,  RGB_HUI,  XXXXXXX,  NK_OFF,   XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
         XXXXXXX,            BL_TOGG,  RGB_VAD,  RGB_SPD,  RGB_HUD,  XXXXXXX,  NK_TOGG,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
-        XXXXXXX,  XXXXXXX,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  RGB_VAD,  RGB_RMOD, RGB_VAI
+        XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  RGB_VAD,  RGB_RMOD, RGB_VAI
                  )
     /*
     ,[EMPTY] = LAYOUT(
@@ -315,26 +325,6 @@ bool get_rgb_match_gpbt_pastel(void) {
         
         if (get_rgb_layer_state()) {
             switch(get_highest_layer(layer_state)){  // special handling per layer
-                case BLAN:
-                    break;
-                case BLMA:
-                    break;
-                case FLAN:
-                    break;
-                case FLMA:
-                    break;
-                case BLAI:
-                    break;
-                case BMAI:
-                    break;
-                case YZAI:
-                    break;
-                case WORK:
-                    break;
-                case FNAI:
-                    break;
-                case FMAI:
-                    break;
                 case FNLY:
                     rgb_matrix_set_color_all(RGB_OFF);
                     break;
@@ -707,6 +697,13 @@ void show_layer_by_rgb(void) {
 
         if (IS_LAYER_ON(NMPD)) {
             rgb_matrix_set_color(LED_7, RGB_CYAN);
+        }
+    
+        if (IS_LAYER_ON(RGBL)) {
+            rgb_matrix_set_color(LED_F5, RGB_AZURE);
+            rgb_matrix_set_color(LED_F6, RGB_CYAN);
+            rgb_matrix_set_color(LED_F7, RGB_SPRINGGREEN);
+            rgb_matrix_set_color(LED_F8, RGB_GREEN);
         }
 
         if (IS_LAYER_ON(FNLY)) {
