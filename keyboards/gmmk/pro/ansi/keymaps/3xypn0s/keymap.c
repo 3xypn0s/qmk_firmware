@@ -42,9 +42,9 @@ enum custom_user_layers {
 enum custom_user_keycodes {
     KC_00 = SAFE_RANGE,
     KC_WINLCK,      //Toggles Win key on and off
-    RGB_NITE,       // Turns off all rgb but allow rgb indicators to work
-    RGB_MAKC,       // Activates rgb match keycaps mode
-    RGB_SOWL,       // Show Layer State by LED (if RGB is on)
+    RGC_NITE,       // Turns off all rgb but allow rgb indicators to work
+    RGC_MAKC,       // Activates rgb match keycaps mode
+    RGC_SOWL,       // Show Layer State by LED (if RGB is on)
     RGN_TOG,        // Toggle RGB lighting on or off, but without write to EEPROM rgb_matrix_toggle_noeeprom()
     SL_BLAN,        // Set start_layer to BLAN
     SL_BLMA,        // Set start_layer to BLMA
@@ -138,8 +138,8 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   KC_F21,   KC_F22,   KC_F23,   KC_F24,   _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            KC_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), KC_HOME,  KC_PGDN,  KC_END
                  )
     
@@ -147,8 +147,8 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            MK_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), MK_HOME,  G(KC_DOWN), MK_END
                  )
     
@@ -156,8 +156,8 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   AI_F21,   AI_F22,   AI_F23,   AI_F24,   _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            AI_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), KC_HOME,  AI_PGDN,  AI_END
                  )
     
@@ -165,8 +165,8 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            MA_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGB_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
-        _______,            RGB_NITE, RGB_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  NK_TOGG,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
         _______,  _______,  _______,                                _______,                                MO(FNLY), _______,  MO(REST), MA_HOME,  G(KC_DOWN), MA_END
                  )
     
@@ -486,17 +486,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              } else  unregister_code16(keycode);
              break;
 #ifdef RGB_MATRIX_ENABLE
-        case RGB_NITE:
+        case RGC_NITE:
             if(record->event.pressed) {
                 rgb_nightmode = !rgb_nightmode;
             } else  unregister_code16(keycode);
             break;
-         case RGB_MAKC:
+         case RGC_MAKC:
              if(record->event.pressed) {
                  rgb_match_keycaps_gpbt_pastel = !rgb_match_keycaps_gpbt_pastel;
              } else  unregister_code16(keycode);
              break;
-        case RGB_SOWL:
+        case RGC_SOWL:
              if(record->event.pressed) {
                  rgb_layer_state = !rgb_layer_state;
              } else  unregister_code16(keycode);
@@ -734,7 +734,7 @@ void set_start_layer(uint8_t layer) {
 void keyboard_post_init_user(void) {
     #ifdef RGB_MATRIX_ENABLE
         // rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-        rgb_matrix_set_color_all(RGB_GREENYELLOW); // Default startup colour
+        rgb_matrix_set_color_all(RGB_GREENYELLOW); // Default startup color
         activate_rgb_nightmode(true);  // Set to true if you want to startup in nightmode, otherwise use Fn + Z to toggle
     #endif
         user_config.raw = eeconfig_read_user();     // Read the user config from EEPROM
