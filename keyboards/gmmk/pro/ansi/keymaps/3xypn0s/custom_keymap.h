@@ -616,11 +616,9 @@
 void set_start_layer(uint8_t layer);
 #ifdef RGB_MATRIX_ENABLE
 void activate_rgb_nightmode (bool turn_on);
-void activate_rgb_off_mode (bool turn_on);
 void activate_rgb_layer_state (bool turn_on);
 void activate_rgb_match_gpbt_pastel (bool turn_on);
 bool get_rgb_nightmode(void);
-bool get_rgb_off_mode(void);
 bool get_rgb_layer_state(void);
 bool get_rgb_match_gpbt_pastel(void);
 void show_layer_by_rgb(void);
