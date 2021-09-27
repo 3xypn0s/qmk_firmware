@@ -47,11 +47,22 @@ enum custom_user_keycodes {
     RGC_MAKC,       // Activates rgb match keycaps mode
     RGC_SOWL,       // Show Layer State by LED (if RGB is on)
     RGN_TOG,        // Toggle RGB lighting on or off, but without write to EEPROM rgb_matrix_toggle_noeeprom()
+    RGN_MOD,        // Cycle through modes, reverse direction when Shift is held (no EEPROM mode)
+    RGN_RMOD,       // Cycle through modes in reverse, forward direction when Shift is held (no EEPROM mode)
+    RGN_HUI,        // Increase hue, decrease hue when Shift is held (no EEPROM mode)
+    RGN_HUD,        // Decrease hue, increase hue when Shift is held (no EEPROM mode)
+    RGN_SAI,        // Increase saturation, decrease saturation when Shift is held (no EEPROM mode)
+    RGN_SAD,        // Decrease saturation, increase saturation when Shift is held (no EEPROM mode)
+    RGN_VAI,        // Increase value (brightness), decrease value when Shift is held (no EEPROM mode)
+    RGN_VAD,        // Decrease value (brightness), increase value when Shift is held (no EEPROM mode)
+    RGN_SPI,        // Increase effect speed (does not support eeprom yet), decrease speed when Shift is held (no EEPROM mode)
+    RGN_SPD,        // Decrease effect speed (does not support eeprom yet), increase speed when Shift is held (no EEPROM mode)
     SL_BLAN,        // Set start_layer to BLAN
     SL_BLMA,        // Set start_layer to BLMA
     SL_BLAI,        // Set start_layer to BLAI
     SL_BMAI         // Set start_layer to BMAI
 };
+
 
 // User settings for EEPROM
 typedef union {
@@ -493,7 +504,57 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              break;
          case RGN_TOG:
               if(record->event.pressed) {
-                  rgb_matrix_toggle_noeeprom();     // Toggle effect range LEDs between on and off (not written to EEPROM)
+                  rgb_matrix_toggle_noeeprom();             // Toggle effect range LEDs between on and off (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_MOD:
+              if(record->event.pressed) {
+                  rgb_matrix_step_noeeprom();               // Change the mode to the next RGB animation in the list of enabled RGB animations (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_RMOD:
+              if(record->event.pressed) {
+                  rgb_matrix_step_reverse_noeeprom();       // Change the mode to the previous RGB animation in the list of enabled RGB animations (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_HUI:
+              if(record->event.pressed) {
+                  rgb_matrix_increase_hue_noeeprom();       // Increase the hue for effect range LEDs. This wraps around at maximum hue (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_HUD:
+              if(record->event.pressed) {
+                  rgb_matrix_decrease_hue_noeeprom();       // Decrease the hue for effect range LEDs. This wraps around at minimum hue (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_SAI:
+              if(record->event.pressed) {
+                  rgb_matrix_increase_sat_noeeprom();       // Increase the saturation for effect range LEDs. This wraps around at maximum saturation (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_SAD:
+              if(record->event.pressed) {
+                  rgb_matrix_decrease_sat_noeeprom();       // Decrease the saturation for effect range LEDs. This wraps around at minimum saturation (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_VAI:
+              if(record->event.pressed) {
+                  rgb_matrix_increase_val_noeeprom();       // Increase the value for effect range LEDs. This wraps around at maximum value (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_VAD:
+              if(record->event.pressed) {
+                  rgb_matrix_decrease_val_noeeprom();       // Decrease the value for effect range LEDs. This wraps around at minimum value (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_SPI:
+              if(record->event.pressed) {
+                  rgb_matrix_increase_speed_noeeprom();     // Increase the speed of the animations (not written to EEPROM)
+              } else  unregister_code16(keycode);
+              break;
+         case RGN_SPD:
+              if(record->event.pressed) {
+                  rgb_matrix_decrease_speed_noeeprom();     // Decrease the speed of the animations (not written to EEPROM)
               } else  unregister_code16(keycode);
               break;
 #endif // RGB_MATRIX_ENABLE
