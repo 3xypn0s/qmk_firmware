@@ -207,10 +207,10 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
                  )
     
     ,[REST] = LAYOUT(
-        XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
-        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
+        TO(BLAN), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  DEBUG,    EEP_RST,  RESET,              XXXXXXX,
+        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,            XXXXXXX,
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  RGB_SAD,  RGB_SAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
-        XXXXXXX,  RGB_TOG,  RGE_SOWL, XXXXXXX,  XXXXXXX,  XXXXXXX,  NK_OFF,   XXXXXXX,  RGB_SPD,  RGB_SPI,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
+        XXXXXXX,  RGB_TOG,  RGE_SOWL, XXXXXXX,  XXXXXXX,  XXXXXXX,  NK_OFF,   XXXXXXX,  RGB_SPD,  RGB_SPI,  XXXXXXX,  XXXXXXX,            XXXXXXX,            CK_KOOF,
         XXXXXXX,            RGE_NITE, XXXXXXX,  XXXXXXX,  CK_VERS,  XXXXXXX,  NK_TOGG,  XXXXXXX,  RGB_VAD,  RGB_VAI,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
         XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  RGB_HUD,  RGB_RMOD, RGB_HUI
                  )
@@ -508,7 +508,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          case CK_VERS:
              if (record->event.pressed) {
                  // when keycode CK_VERS is pressed send version of keymap
-                 SEND_STRING("1.0.0 28.09.2021 0025UTC"); // VERSION 0.0.0 DD.MM.YYYY HHMMUTC Time in UTC
+                 SEND_STRING("1.0.1 28.09.2021 1529utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
              } else unregister_code16(keycode);
              break;
          case SL_BLAN:
