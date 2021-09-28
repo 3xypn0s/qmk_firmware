@@ -41,8 +41,8 @@ enum custom_user_layers {
 
 // KEYCODES
 enum custom_user_keycodes {
-    KC_00 = SAFE_RANGE,
-    KC_WINLCK,      //Toggles Win key on and off
+    CK_00 = SAFE_RANGE,
+    CK_VERS,        // Send string with version of keymap
     RGC_NITE,       // Turns off all rgb but allow rgb indicators to work
     RGE_NITE,       // Turns off all rgb but allow rgb indicators to work (and save state to EEPROM)
     RGC_MAKC,       // Activates rgb match keycaps mode
@@ -148,7 +148,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         TG(NMPD), XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_P7,    KC_P8,    KC_P9,    KC_P0,    KC_PMNS,  KC_PPLS,  _______,            _______,
         _______,  KC_HOME,  KC_UP,    KC_PGUP,  KC_INS,   XXXXXXX,  KC_TAB,   KC_P4,    KC_P5,    KC_P6,    KC_PDOT,  XXXXXXX,  XXXXXXX,  KC_INS,             _______,
         _______,  KC_LEFT,  KC_DOWN,  KC_RGHT,  KC_DEL,   XXXXXXX,  XXXXXXX,  KC_P1,    KC_P2,    KC_P3,    XXXXXXX,  KC_PAST,            KC_PENT,            _______,
-        _______,            KC_END,   KC_PGDN,  KC_INS,   XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_P0,    KC_00,    KC_PDOT,  KC_PSLS,            KC_INS,  RCTL(KC_PGUP), _______,
+        _______,            KC_END,   KC_PGDN,  KC_INS,   XXXXXXX,  XXXXXXX,  XXXXXXX,  KC_P0,    CK_00,    KC_PDOT,  KC_PSLS,            KC_INS,  RCTL(KC_PGUP), _______,
         _______,  _______,  _______,                                KC_BSPC,                                _______,  _______,  _______,  RCTL(KC_LEFT), RCTL(KC_PGDN), RCTL(KC_RIGHT)
         )
     
@@ -190,10 +190,10 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     
     ,[RGBL] = LAYOUT(
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RGN_VAD,  RGN_VAI,  _______,            _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RGN_SPD,  RGN_SPI,  _______,            RGN_SAI,
-        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            RGN_SAD,
-        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,  RGN_MOD,  _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RGN_SAD,  RGN_SAI,  _______,  _______,  _______,  _______,            _______,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  RGN_SPD,  RGN_SPI,  _______,  _______,            _______,            _______,
+        _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  _______,  RGN_VAD,  RGN_VAI,  _______,            _______,  RGN_MOD,  _______,
         _______,  _______,  _______,                                _______,                                _______,  _______,  _______,  RGN_HUD,  RGN_RMOD, RGN_HUI
                  )
     
@@ -209,10 +209,10 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     ,[REST] = LAYOUT(
         XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  TO(BLAN),           XXXXXXX,
         XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  XXXXXXX,  EEP_RST,            XXXXXXX,
-        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  RGB_SPD,  RGB_SPI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
-        XXXXXXX,  RGB_TOG,  RGE_SOWL, XXXXXXX,  RGB_HUI,  RGB_VAI,  NK_OFF,   XXXXXXX,  RGB_VAD,  RGB_VAI,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
-        XXXXXXX,            RGE_NITE, XXXXXXX,  XXXXXXX,  RGB_HUD,  RGB_VAD,  NK_TOGG,  XXXXXXX,  RGB_RMOD, RGB_MOD,  XXXXXXX,            XXXXXXX,  XXXXXXX,  CK_KOTG,
-        XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  XXXXXXX,  XXXXXXX,  XXXXXXX
+        XXXXXXX,  SL_BLAN,  SL_BLMA,  SL_BLAI,  SL_BMAI,  XXXXXXX,  NK_ON,    XXXXXXX,  RGB_SAD,  RGB_SAI,  XXXXXXX,  XXXXXXX,  XXXXXXX,  RESET,              CK_KOON,
+        XXXXXXX,  RGB_TOG,  RGE_SOWL, XXXXXXX,  XXXXXXX,  XXXXXXX,  NK_OFF,   XXXXXXX,  RGB_SPD,  RGB_SPI,  XXXXXXX,  XXXXXXX,            DEBUG,              CK_KOOF,
+        XXXXXXX,            RGE_NITE, XXXXXXX,  XXXXXXX,  CK_VERS,  XXXXXXX,  NK_TOGG,  XXXXXXX,  RGB_VAD,  RGB_VAI,  XXXXXXX,            XXXXXXX,  RGB_MOD,  CK_KOTG,
+        XXXXXXX,  _______,  XXXXXXX,                                XXXXXXX,                                _______,  _______,  _______,  RGB_HUD,  RGB_RMOD, RGB_HUI
                  )
     /*
     ,[EMPTY] = LAYOUT(
@@ -499,17 +499,18 @@ __attribute__ ((weak))  bool process_record_keymap(uint16_t keycode, keyrecord_t
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_keymap(keycode, record)) { return false; }
      switch (keycode) {
-        case KC_00:
+        case CK_00:
             if (record->event.pressed) {
-                // when keycode KC_00 is pressed
+                // when keycode CK_00 is pressed
                 SEND_STRING("00");
             } else unregister_code16(keycode);
             break;
-        case KC_WINLCK:
-            if (record->event.pressed) {
-                keymap_config.no_gui = !keymap_config.no_gui; //toggle status
-            } else  unregister_code16(keycode);
-            break;
+         case CK_VERS:
+             if (record->event.pressed) {
+                 // when keycode CK_VERS is pressed send version of keymap
+                 SEND_STRING("1.0.0 28.09.2021 0025UTC"); // VERSION 0.0.0 DD.MM.YYYY HHMMUTC Time in UTC
+             } else unregister_code16(keycode);
+             break;
          case SL_BLAN:
              if (record->event.pressed) {
                  set_start_layer(BLAN); // Set start_layer to BLAN
