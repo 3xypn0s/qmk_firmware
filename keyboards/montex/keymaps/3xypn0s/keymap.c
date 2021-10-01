@@ -16,6 +16,11 @@
 
 #include QMK_KEYBOARD_H
 
+enum custom_keycodes {
+    WM_ONED = SAFE_RANGE,
+    WM_TWOD,
+};
+
 // LAYERS
 enum custom_user_layers {
     _NUMPAD,
@@ -115,7 +120,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      */
 	,[_WINDOWS] = LAYOUT_numpad_6x5(
         C(A(KC_DEL)),  C(G(KC_LEFT)),  C(G(KC_RGHT)),  _______,  G(KC_L),
-        _______,       KC_DEL,         _______,        _______,  _______,
+        _______,       KC_DEL,         _______,        WM_TWOD,  WM_ONED,
         _______,       KC_HOME,        KC_UP,          KC_PGUP,
         _______,       KC_LEFT,        KC_DOWN,        KC_RGHT,  KC_WH_U,
         _______,       KC_END,         KC_DOWN,        KC_PGDN,
@@ -177,4 +182,58 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,  TG(_WINDOWS),  XXXXXXX,        XXXXXXX,
         BL_TOGG,  TO(_NUMPAD),                   TG(_NUMLOCK),  _______
     )
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case WM_ONED:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LGUI("s"));
+                _delay_ms(500);
+                SEND_STRING("cmd" SS_DELAY(10) SS_TAP(X_ENT));
+                _delay_ms(500);
+                //SEND_STRING("C:\\Windows\\System32\\DisplaySwitch.exe /clone"SS_TAP(X_ENT));
+                SEND_STRING("C>");
+                SEND_STRING(SS_RALT("-"));
+                SEND_STRING("Windows");
+                SEND_STRING(SS_RALT("-"));
+                SEND_STRING("Szstem32");
+                SEND_STRING(SS_RALT("-"));
+                SEND_STRING("DisplazSwitch.exe ");
+                SEND_STRING(SS_LSFT("7"));
+                SEND_STRING("clone");
+                _delay_ms(10);
+                SEND_STRING(SS_TAP(X_ENT));
+                _delay_ms(3000);
+                SEND_STRING("exit" SS_DELAY(10) SS_TAP(X_ENT));
+            } else {
+                // when keycode WM_ONED is released
+            }
+            break;
+        case WM_TWOD:
+            if (record->event.pressed) {
+                SEND_STRING(SS_LGUI("s"));
+                _delay_ms(500);
+                SEND_STRING("cmd" SS_DELAY(10) SS_TAP(X_ENT));
+                _delay_ms(500);
+                //SEND_STRING("C:\\Windows\\System32\\DisplaySwitch.exe /extend"SS_TAP(X_ENT));
+                SEND_STRING("C>");
+                SEND_STRING(SS_RALT("-"));
+                SEND_STRING("Windows");
+                SEND_STRING(SS_RALT("-"));
+                SEND_STRING("Szstem32");
+                SEND_STRING(SS_RALT("-"));
+                SEND_STRING("DisplazSwitch.exe ");
+                SEND_STRING(SS_LSFT("7"));
+                SEND_STRING("extend");
+                _delay_ms(10);
+                SEND_STRING(SS_TAP(X_ENT));
+                _delay_ms(3000);
+                SEND_STRING("exit" SS_DELAY(10) SS_TAP(X_ENT));
+            } else {
+                // when keycode WM_TWOD is released
+            }
+            break;
+    }
+    return true;
 };
