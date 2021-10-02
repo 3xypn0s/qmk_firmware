@@ -24,8 +24,8 @@ enum custom_keycodes {
 // LAYERS
 enum custom_user_layers {
     _NUMPAD,
-    _NUMLOCK,
     _WINDOWS,
+    _NUMLOCK,
     _TEXTEDIT,
     _BROWSER,
     _GAMING,
@@ -36,17 +36,17 @@ enum custom_user_layers {
 
     /*
      * ┌───┌───┬───┬───┬───┐
-     * │ $ │ ( │ ) │FN │Nlk│
+     * │ESC│Brk│ScL│PrS│Ins│
      * ├───┼───┼───┼───┼───┤
-     * │Esc│Del│ / │ * │ - │
+     * │Del│Nlk│ / │ * │ - │
      * ├───┼───┼───┼───┼───┤
-     * │Eql│ 7 │ 8 │ 9 │   │
+     * │ - │ 7 │ 8 │ 9 │   │
      * ├───┼───┼───┼───┤ + │
-     * │Tab│ 4 │ 5 │ 6 │   │
+     * │ + │ 4 │ 5 │ 6 │   │
      * ├───┼───┼───┼───┼───┤
-     * │Cap│ 1 │ 2 │ 3 │   │
+     * │Sup│ 1 │ 2 │ 3 │   │
      * ├───┼───┴───┼───┤Ent│
-     * │Bak│ 0     │ . │   │
+     * │App│   0   │ . │   │
      * └───┴───────┴───┴───┘
      */
 
@@ -55,76 +55,76 @@ enum custom_user_layers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*
      * ┌───┌───┬───┬───┬───┐
-     * │Ins│ ( │ ) │MO1│Nlk│
+     * │Esc│Brk│ScL│PrS│Ins│
      * ├───┼───┼───┼───┼───┤
-     * │Esc│Del│ / │ * │ - │
+     * │Bak│Nlk│ / │ * │ - │
      * ├───┼───┼───┼───┼───┤
-     * │Eql│ 7 │ 8 │ 9 │   │
+     * │Del│ 7 │ 8 │ 9 │   │
      * ├───┼───┼───┼───┤ + │
-     * │Tab│ 4 │ 5 │ 6 │   │
+     * │OSL│ 4 │ 5 │ 6 │   │
      * ├───┼───┼───┼───┼───┤
-     * │Shi│ 1 │ 2 │ 3 │   │
+     * │TTN│ 1 │ 2 │ 3 │   │
      * ├───┼───┴───┼───┤Ent│
-     * │Bak│ 0     │ . │   │
+     * │MOF│   0   │ . │   │
      * └───┴───────┴───┴───┘
      */
     [_NUMPAD] = LAYOUT_numpad_6x5(
-        KC_INS,      S(KC_8),   S(KC_9),   MO(_FN),   KC_NLCK,
-        KC_ESC,      KC_DEL,    KC_PSLS,   KC_PAST,   KC_PMNS,
-        KC_PEQL,     KC_P7,     KC_P8,     KC_P9,
-        KC_TAB,      KC_P4,     KC_P5,     KC_P6,     KC_PPLS,
-        KC_LSHIFT,   KC_P1,     KC_P2,     KC_P3,
-        KC_BSPC,     KC_P0,                KC_PDOT,   KC_PENT
+        KC_ESC,      KC_PAUS,   KC_SLCK,   KC_PSCR,   KC_INS,
+        KC_BSPC,     KC_NLCK,   KC_PSLS,   KC_PAST,   KC_PMNS,
+        KC_DEL,      KC_P7,     KC_P8,     KC_P9,
+        OSL(_NUMLOCK),KC_P4,    KC_P5,     KC_P6,     KC_PPLS,
+        TT(_NUMLOCK),KC_P1,     KC_P2,     KC_P3,
+        MO(_FN),     KC_P0,                KC_PDOT,   KC_PENT
     )
-
-
+    
+    
     /*
      * ┌───┌───┐───┬───┬───┐
-     * │Rst│ ` │Tab│MO1│Bsp│
+     * │Esc│LOC│XXX│XXX│XXX│
      * ├───┼───┘───┼───┼───┤
-     * │ , │Num│ / │ * │ - │
+     * │XXX│XXX│XXX│XXX│XXX│
      * ├───┼───┼───┼───┼───┤
-     * │Gui│Hom│ ↑ │PgU│   │
-     * ├───┼───┼───┼───┤ + │
-     * │Alt│ ← │   │ → │   │
+     * │1SC│XXX│XXX│MoU│   │
+     * ├───┼───┼───┼───┤XXX│
+     * │2SC│SGL│XXX│SGR│   │
      * ├───┼───┼───┼───┤───┤
-     * │Shi│End│ ↓ │PgD│   │
-     * ├───┼───┴───┼───┤Ent│
-     * │Ctr│Insert │Del│   │
+     * │MON│XXX│XXX│MoD│   │
+     * ├───┼───┴───┼───┤APE│
+     * │MOF│  XXX  │XXX│   │
      * └───┴───────┴───┘───┘
      */
-    ,[_NUMLOCK] = LAYOUT_numpad_6x5(
-        _______,   _______,   _______,   _______,   _______,
-        _______,   KC_DEL,    _______,   _______,   _______,
-        _______,   KC_HOME,   KC_UP,     KC_PGUP,
-        _______,   KC_LEFT,   XXXXXXX,   KC_RGHT,   _______,
-        _______,   KC_END,    KC_DOWN,   KC_PGDN,
-        _______,   KC_HOME,              KC_INS,    _______
+    ,[_WINDOWS] = LAYOUT_numpad_6x5(
+        KC_ESC,        G(KC_L),         XXXXXXX,        XXXXXXX,        XXXXXXX,
+        XXXXXXX,       XXXXXXX,         XXXXXXX,        XXXXXXX,        XXXXXXX,
+        WM_ONED,       XXXXXXX,         XXXXXXX,        KC_WH_U,
+        WM_TWOD,       C(G(KC_LEFT)),   XXXXXXX,        C(G(KC_RGHT)),  XXXXXXX,
+        MO(_NUMLOCK),  XXXXXXX,         XXXXXXX,        KC_WH_D,
+        MO(_FN),       XXXXXXX,                         XXXXXXX,        C(A(KC_DEL))
     )
 
 
     /*
      * ┌───┌───┐───┬───┬───┐
-     * │APE│SGL│SGR│   │LOC│
+     * │   │   │   │   │   │
      * ├───┼───┘───┼───┼───┤
      * │   │   │   │   │   │
      * ├───┼───┼───┼───┼───┤
      * │   │Hom│ ↑ │PgU│   │
-     * ├───┼───┼───┼───┤MoU│
-     * │   │ ← │   │ → │   │
+     * ├───┼───┼───┼───┤   │
+     * │   │ ← │XXX│ → │   │
      * ├───┼───┼───┼───┤───┤
      * │   │End│ ↓ │PgD│   │
-     * ├───┼───┴───┼───┤MoD│
-     * │   │       │Del│   │
+     * ├───┼───┴───┼───┤   │
+     * │   │Insert │Del│   │
      * └───┴───────┴───┘───┘
      */
-	,[_WINDOWS] = LAYOUT_numpad_6x5(
-        C(A(KC_DEL)),  C(G(KC_LEFT)),  C(G(KC_RGHT)),  _______,  G(KC_L),
-        _______,       KC_DEL,         _______,        WM_TWOD,  WM_ONED,
-        _______,       KC_HOME,        KC_UP,          KC_PGUP,
-        _______,       KC_LEFT,        KC_DOWN,        KC_RGHT,  KC_WH_U,
-        _______,       KC_END,         KC_DOWN,        KC_PGDN,
-        _______,       _______,                        _______,  KC_WH_D
+    ,[_NUMLOCK] = LAYOUT_numpad_6x5(
+        _______,   _______,   _______,   _______,   _______,
+        _______,   _______,   _______,   _______,   _______,
+        _______,   KC_HOME,   KC_UP,     KC_PGUP,
+        _______,   KC_LEFT,   XXXXXXX,   KC_RGHT,   _______,
+        _______,   KC_END,    KC_DOWN,   KC_PGDN,
+        _______,   KC_INS,               KC_DEL,    _______
     )
     ,[_TEXTEDIT] = LAYOUT_numpad_6x5(
       _______,  _______,  _______,  _______,  _______,
@@ -151,10 +151,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,            _______,  _______
     )
 	,[_BF4] = LAYOUT_numpad_6x5(
-        KC_ESC,   KC_H,     KC_MUTE,  _______,  TG(_BF4_FN),
+        KC_ESC,   KC_H,     KC_MUTE,  MO(_FN),  TG(_BF4_FN),
         KC_1,     KC_2,     KC_3,     KC_4,     KC_5,
-        KC_R,     KC_G,     KC_W,     KC_E,
-        KC_TAB,   KC_A,     KC_S,     KC_D,     KC_F,
+        KC_TAB,   KC_G,     KC_W,     KC_E,
+        KC_R,     KC_A,     KC_S,     KC_D,     KC_F,
         KC_LSFT,  KC_X,     KC_C,     KC_Z,
         KC_LCTL,  KC_F,               KC_Q,     KC_SPC
     )
@@ -175,12 +175,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  _______,            _______,  _______
     )*/
 	,[_FN] = LAYOUT_numpad_6x5(
-        RESET,    _______,       _______,        _______,       TG(_NUMLOCK),
-        _______,  _______,       _______,        _______,       _______,
-        _______,  TG(_GAMING),   TG(_BF4),       XXXXXXX,
-        _______,  XXXXXXX,       XXXXXXX,        XXXXXXX,       _______,
-        RGB_TOG,  TG(_WINDOWS),  XXXXXXX,        XXXXXXX,
-        BL_TOGG,  TO(_NUMPAD),                   TG(_NUMLOCK),  _______
+        _______,  _______,       _______,        _______,       RESET,
+        _______,  TG(_NUMLOCK),  _______,        _______,       _______,
+        RGB_TOG,  TG(_GAMING),   TG(_BF4),       XXXXXXX,
+        BL_TOGG,  XXXXXXX,       XXXXXXX,        XXXXXXX,       _______,
+        _______,  TG(_WINDOWS),  XXXXXXX,        XXXXXXX,
+        _______,  TO(_NUMPAD),                   _______,       _______
     )
 };
 
