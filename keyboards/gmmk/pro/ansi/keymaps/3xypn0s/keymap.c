@@ -43,6 +43,7 @@ enum custom_user_layers {
 enum custom_user_keycodes {
     CK_00 = SAFE_RANGE,
     CK_VERS,        // Send string with version of keymap
+    CK_XENT,        // Press Enter x times
     RGC_NITE,       // Turns off all rgb but allow rgb indicators to work
     RGE_NITE,       // Turns off all rgb but allow rgb indicators to work (and save state to EEPROM)
     RGC_MAKC,       // Activates rgb match keycaps mode
@@ -135,7 +136,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
                  )
     
     ,[WORK] = LAYOUT(
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
+        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            LSA(KC_INS),
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
@@ -156,7 +157,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   KC_F21,   KC_F22,   KC_F23,   KC_F24,   _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            KC_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            CK_XENT,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), KC_HOME,  KC_PGDN,  KC_END
                  )
@@ -165,7 +166,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            MK_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            CK_XENT,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BLMA), _______,  _______,  _______,            _______,  G(KC_UP), MK_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), MK_HOME,  G(KC_DOWN), MK_END
                  )
@@ -174,7 +175,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   AI_F21,   AI_F22,   AI_F23,   AI_F24,   _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            AI_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            CK_XENT,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), KC_HOME,  AI_PGDN,  AI_END
                  )
@@ -183,7 +184,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   _______,  _______,  _______,  _______,  _______,            _______,
         _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            MA_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
-        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            _______,            _______,
+        _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            CK_XENT,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BMAI), _______,  _______,  _______,            _______,  G(MA_UP), MA_HOME,
         _______,  MO(REST), _______,                                _______,                                MO(FNLY), _______,  MO(RGBL), MA_HOME,  G(KC_DOWN), MA_END
                  )
@@ -452,6 +453,7 @@ void rgb_rest_layer(void){
         if (IS_HOST_LED_ON(USB_LED_CAPS_LOCK)) {
             rgb_matrix_set_color(LED_CAPS, RGB_CORAL);
             rgb_matrix_set_color(LED_LSFT, RGB_CORAL);
+            rgb_matrix_set_color(LED_RSFT, RGB_CORAL);
             rgb_matrix_set_color(LED_LCTL, RGB_CORAL);
         }
         
@@ -508,7 +510,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          case CK_VERS:
              if (record->event.pressed) {
                  // when keycode CK_VERS is pressed send version of keymap
-                 SEND_STRING("1.0.2 28.09.2021 1613utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
+                 SEND_STRING("1.1.0 13.10.2021 1449utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
+             } else unregister_code16(keycode);
+             break;
+         case CK_XENT:
+             if (record->event.pressed) {
+                 // when keycode CK_XENT is pressed send 10 times enter
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
+                 tap_code(KC_ENT);
              } else unregister_code16(keycode);
              break;
          case SL_BLAN:
@@ -640,6 +657,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 // Key Overrides based in custom keycodes in file 'keymap.h'
 // ko_make_with_layers(modifiers, key, replacement, layers)
 // ko_make_basic(modifiers, key, replacement)
+
+// global overrides
+const key_override_t kc_bspc_shift_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
+
 // Overrides for 'AI_' custom keycodes, Keyboard Layout ANSI but ISO German is configured on computer
 // Shift Key Override
 const key_override_t ai_grv_shift_key_override  = ko_make_with_layers(MOD_MASK_SHIFT, AI_GRV, AIS_GRV, (1 << BLAI));
@@ -674,6 +695,9 @@ const key_override_t ai_3_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC
 //const key_override_t ai_e_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_E, AIAG_E, (1 << BLAI));
 const key_override_t ai_u_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_U, AIAG_U, (1 << BLAI));
 const key_override_t ai_o_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_O, AIAG_O, (1 << BLAI));
+const key_override_t ai_lbrc_altgr_key_override = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_LBRC, AIAG_LBRC, (1 << BLAI));
+const key_override_t ai_rbrc_altgr_key_override = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_RBRC, AIAG_RBRC, (1 << BLAI));
+const key_override_t ai_bsls_altgr_key_override = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_BSLS, AIAG_BSLS, (1 << BLAI));
 
 const key_override_t ai_a_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_A, AIAG_A, (1 << BLAI));
 const key_override_t ai_s_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_S, AIAG_S, (1 << BLAI));
@@ -712,6 +736,9 @@ const key_override_t ma_q_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC
 //const key_override_t ma_e_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_E, MAAG_E, (1 << BMAI));
 const key_override_t ma_u_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_U, MAAG_U, (1 << BMAI));
 const key_override_t ma_o_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_O, MAAG_O, (1 << BMAI));
+const key_override_t ma_lbrc_altgr_key_override = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_LBRC, MAAG_LBRC, (1 << BMAI));
+const key_override_t ma_rbrc_altgr_key_override = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_RBRC, MAAG_RBRC, (1 << BMAI));
+const key_override_t ma_bsls_altgr_key_override = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_BSLS, MAAG_BSLS, (1 << BMAI));
 
 const key_override_t ma_a_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_A, MAAG_A, (1 << BMAI));
 const key_override_t ma_s_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_S, MAAG_S, (1 << BMAI));
@@ -719,6 +746,7 @@ const key_override_t ma_s_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC
 
 // This globally defines all key overrides to be used
 const key_override_t **key_overrides = (const key_override_t *[]){
+    &kc_bspc_shift_key_override,
     &ai_grv_shift_key_override,
     &ai_2_shift_key_override,
     &ai_3_shift_key_override,
@@ -745,6 +773,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     //&ai_e_altgr_key_override,
     &ai_u_altgr_key_override,
     &ai_o_altgr_key_override,
+    &ai_lbrc_altgr_key_override,
+    &ai_rbrc_altgr_key_override,
+    &ai_bsls_altgr_key_override,
     &ai_a_altgr_key_override,
     &ai_s_altgr_key_override,
     &ma_grv_shift_key_override,
@@ -770,6 +801,9 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &ma_q_altgr_key_override,
     &ma_u_altgr_key_override,
     &ma_o_altgr_key_override,
+    &ma_lbrc_altgr_key_override,
+    &ma_rbrc_altgr_key_override,
+    &ma_bsls_altgr_key_override,
     &ma_a_altgr_key_override,
     &ma_s_altgr_key_override,
     NULL // Null terminate the array of overrides!
