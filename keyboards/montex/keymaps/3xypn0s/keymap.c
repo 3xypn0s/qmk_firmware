@@ -153,13 +153,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	,[_BF4] = LAYOUT_numpad_6x5(
         KC_ESC,   KC_H,     KC_MUTE,  MO(_FN),  TG(_BF4_FN),
         KC_1,     KC_2,     KC_3,     KC_4,     KC_5,
-        KC_TAB,   KC_G,     KC_W,     KC_E,
-        KC_R,     KC_A,     KC_S,     KC_D,     KC_F,
-        KC_LSFT,  KC_X,     KC_C,     KC_Z,
-        KC_LCTL,  KC_F,               KC_Q,     KC_SPC
+        KC_TAB,   KC_Q,     KC_W,     KC_E,
+        KC_T,     KC_A,     KC_S,     KC_D,     KC_F,
+        KC_LSFT,  KC_Y,     KC_X,     KC_C,
+        KC_LCTL,  KC_I,               KC_O,     KC_SPC
     )
     ,[_BF4_FN] = LAYOUT_numpad_6x5(
-        _______,  _______,  _______,  _______,  _______,
+        KC_F6,    KC_F7,    _______,  _______,  _______,
         KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,
         _______,  _______,  _______,  _______,
         _______,  _______,  _______,  _______,  _______,
