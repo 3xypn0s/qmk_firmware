@@ -510,7 +510,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          case CK_VERS:
              if (record->event.pressed) {
                  // when keycode CK_VERS is pressed send version of keymap
-                 SEND_STRING("1.1.0 13.10.2021 1449utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
+                 SEND_STRING("1.2.0 30.12.2021 1909utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
              } else unregister_code16(keycode);
              break;
          case CK_XENT:
@@ -690,6 +690,7 @@ const key_override_t ai_grv_altgr_key_override  = ko_make_with_layers(MOD_BIT(KC
 const key_override_t ai_1_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_1, AIAG_1, (1 << BLAI));
 const key_override_t ai_2_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_2, AIAG_2, (1 << BLAI));
 const key_override_t ai_3_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_3, AIAG_3, (1 << BLAI));
+const key_override_t ai_4_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_4, AIAG_4, (1 << BLAI));
 
 //const key_override_t ai_q_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_Q, AIAG_Q, (1 << BLAI));
 //const key_override_t ai_e_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), AI_E, AIAG_E, (1 << BLAI));
@@ -731,6 +732,7 @@ const key_override_t ma_grv_altgr_key_override  = ko_make_with_layers(MOD_BIT(KC
 const key_override_t ma_1_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_1, MAAG_1, (1 << BMAI));
 //const key_override_t ma_2_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_2, MAAG_2, (1 << BMAI));
 //const key_override_t ma_3_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_3, MAAG_3, (1 << BMAI));
+const key_override_t ma_4_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_4, MAAG_4, (1 << BMAI));
 
 const key_override_t ma_q_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_Q, MAAG_Q, (1 << BMAI));
 //const key_override_t ma_e_altgr_key_override    = ko_make_with_layers(MOD_BIT(KC_ALGR), MA_E, MAAG_E, (1 << BMAI));
@@ -769,6 +771,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &ai_1_altgr_key_override,
     &ai_2_altgr_key_override,
     &ai_3_altgr_key_override,
+    &ai_4_altgr_key_override,
     //&ai_q_altgr_key_override,
     //&ai_e_altgr_key_override,
     &ai_u_altgr_key_override,
@@ -798,6 +801,7 @@ const key_override_t **key_overrides = (const key_override_t *[]){
     &ma_slsh_shift_key_override,
     &ma_grv_altgr_key_override,
     &ma_1_altgr_key_override,
+    &ma_4_altgr_key_override,
     &ma_q_altgr_key_override,
     &ma_u_altgr_key_override,
     &ma_o_altgr_key_override,
