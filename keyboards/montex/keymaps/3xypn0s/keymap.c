@@ -131,25 +131,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     
     /*
      * ┌───┌───┐───┬───┬───┐
-     * │Esc│LOC│XXX│XXX│XXX│
+     * │Esc│LOC│1SC│2SC│XXX│
      * ├───┼───┘───┼───┼───┤
-     * │Bak│XXX│XXX│SGL│SGR│
+     * │PRV│PLY│NXT│SGL│SGR│
      * ├───┼───┼───┼───┼───┤
-     * │1SC│Hom│ ↑ │PgU│   │
+     * │VoD│Hom│ ↑ │PgU│   │
      * ├───┼───┼───┼───┤ + │
-     * │2SC│ ← │XXX│ → │   │
+     * │VoU│ ← │XXX│ → │   │
      * ├───┼───┼───┼───┤───┤
-     * │XXX│End│ ↓ │PgD│   │
+     * │MUT│End│ ↓ │PgD│   │
      * ├───┼───┴───┼───┤Ent│
      * │MOF│Insert │Del│   │
      * └───┴───────┴───┘───┘
      */
     ,[_CHESS] = LAYOUT_numpad_6x5(
-        KC_ESC,    G(KC_L),   XXXXXXX,   XXXXXXX,   XXXXXXX,
-        KC_BSPC,   XXXXXXX,   XXXXXXX,   C(G(KC_LEFT)),C(G(KC_RGHT)),
-        WM_ONED,   KC_HOME,   KC_UP,     KC_PGUP,
-        WM_TWOD,   KC_LEFT,   XXXXXXX,   KC_RGHT,   KC_PPLS,
-        XXXXXXX,   KC_END,    KC_DOWN,   KC_PGDN,
+        KC_ESC,    G(KC_L),   WM_ONED,   WM_TWOD,   XXXXXXX,
+        KC_MPRV,   KC_MPLY,   KC_MNXT,   C(G(KC_LEFT)),C(G(KC_RGHT)),
+        KC_VOLD,   KC_HOME,   KC_UP,     KC_PGUP,
+        KC_VOLU,   KC_LEFT,   XXXXXXX,   KC_RGHT,   KC_PPLS,
+        KC_MUTE,   KC_END,    KC_DOWN,   KC_PGDN,
         MO(_FN),   KC_INS,               KC_DEL,    KC_PENT
     )
     ,[_TEXTEDIT] = LAYOUT_numpad_6x5(
