@@ -26,6 +26,7 @@ enum custom_user_layers {
     _NUMPAD,
     _WINDOWS,
     _NUMLOCK,
+    _CHESS,
     _TEXTEDIT,
     _BROWSER,
     _GAMING,
@@ -126,6 +127,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,   KC_END,    KC_DOWN,   KC_PGDN,
         _______,   KC_INS,               KC_DEL,    _______
     )
+    
+    
+    /*
+     * ┌───┌───┐───┬───┬───┐
+     * │Esc│LOC│XXX│XXX│XXX│
+     * ├───┼───┘───┼───┼───┤
+     * │Bak│XXX│XXX│SGL│SGR│
+     * ├───┼───┼───┼───┼───┤
+     * │1SC│Hom│ ↑ │PgU│   │
+     * ├───┼───┼───┼───┤ + │
+     * │2SC│ ← │XXX│ → │   │
+     * ├───┼───┼───┼───┤───┤
+     * │XXX│End│ ↓ │PgD│   │
+     * ├───┼───┴───┼───┤Ent│
+     * │MOF│Insert │Del│   │
+     * └───┴───────┴───┘───┘
+     */
+    ,[_CHESS] = LAYOUT_numpad_6x5(
+        KC_ESC,    G(KC_L),   XXXXXXX,   XXXXXXX,   XXXXXXX,
+        KC_BSPC,   XXXXXXX,   XXXXXXX,   C(G(KC_LEFT)),C(G(KC_RGHT)),
+        WM_ONED,   KC_HOME,   KC_UP,     KC_PGUP,
+        WM_TWOD,   KC_LEFT,   XXXXXXX,   KC_RGHT,   KC_PPLS,
+        XXXXXXX,   KC_END,    KC_DOWN,   KC_PGDN,
+        MO(_FN),   KC_INS,               KC_DEL,    KC_PENT
+    )
     ,[_TEXTEDIT] = LAYOUT_numpad_6x5(
       _______,  _______,  _______,  _______,  _______,
       _______,  _______,  _______,  _______,  _______,
@@ -179,7 +205,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,  TG(_NUMLOCK),  _______,        _______,       _______,
         RGB_TOG,  TG(_GAMING),   TG(_BF4),       XXXXXXX,
         BL_TOGG,  XXXXXXX,       XXXXXXX,        XXXXXXX,       _______,
-        _______,  TG(_WINDOWS),  XXXXXXX,        XXXXXXX,
+        _______,  TG(_WINDOWS),  TG(_CHESS),     XXXXXXX,
         _______,  TO(_NUMPAD),                   _______,       _______
     )
 };
