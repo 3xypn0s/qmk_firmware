@@ -560,7 +560,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          case CK_VERS:
              if (record->event.pressed) {
                  // when keycode CK_VERS is pressed send version of keymap
-                 SEND_STRING("1.2.0 30.12.2021 1909utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
+                 SEND_STRING("1.3.0 27.01.2022 1158utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
              } else unregister_code16(keycode);
              break;
          case CK_XENT:
