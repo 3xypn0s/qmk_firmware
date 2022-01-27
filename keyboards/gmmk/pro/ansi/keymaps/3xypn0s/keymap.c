@@ -44,6 +44,8 @@ enum custom_user_keycodes {
     CK_00 = SAFE_RANGE,
     CK_VERS,        // Send string with version of keymap
     CK_XENT,        // Press Enter x times
+    WM_ONED,        // Switch to One Display Windows - DisplaySwitch.exe clone
+    WM_TWOD,        // Switch to Two Display Windows - DisplaySwitch.exe extend
     RGC_NITE,       // Turns off all rgb but allow rgb indicators to work
     RGE_NITE,       // Turns off all rgb but allow rgb indicators to work (and save state to EEPROM)
     RGC_MAKC,       // Activates rgb match keycaps mode
@@ -155,7 +157,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     
 	,[FLAN] = LAYOUT(
         _______,  KC_F13,   KC_F14,   KC_F15,   KC_F16,   KC_F17,   KC_F18,   KC_F19,   KC_F20,   KC_F21,   KC_F22,   KC_F23,   KC_F24,   _______,            _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            KC_INS,
+        _______,  WM_ONED,  WM_TWOD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,            KC_INS,
         _______,  _______,  TO(BLAN), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            CK_XENT,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BLMA), _______,  _______,  _______,            _______,  KC_PGUP,  KC_HOME,
@@ -173,7 +175,7 @@ LT(FMAI,MA_CAPS), MA_A,     MA_S,     MA_D,     MA_F,     MA_G,     MA_H,     MA
     
 	,[FNAI] = LAYOUT(
         _______,  AI_F13,   AI_F14,   AI_F15,   AI_F16,   AI_F17,   AI_F18,   AI_F19,   AI_F20,   AI_F21,   AI_F22,   AI_F23,   AI_F24,   _______,            _______,
-        _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            AI_INS,
+        _______,  WM_ONED,  WM_TWOD,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  AI_MUTE,  AI_VOLD,  AI_VOLU,  _______,            AI_INS,
         _______,  _______,  TO(BLAI), _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  RESET,              _______,
         _______,  RGN_TOG,  RGC_SOWL, _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,  _______,            CK_XENT,            _______,
         _______,            RGC_NITE, RGC_MAKC, _______,  _______,  _______,  _______,  TO(BMAI), _______,  _______,  _______,            _______,  AI_PGUP,  KC_HOME,
@@ -501,6 +503,54 @@ __attribute__ ((weak))  bool process_record_keymap(uint16_t keycode, keyrecord_t
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_keymap(keycode, record)) { return false; }
      switch (keycode) {
+         case WM_ONED:
+         if (record->event.pressed) {
+             SEND_STRING(SS_LGUI("s"));
+             _delay_ms(500);
+             SEND_STRING("cmd" SS_DELAY(10) SS_TAP(X_ENT));
+             _delay_ms(500);
+             //SEND_STRING("C:\\Windows\\System32\\DisplaySwitch.exe /clone"SS_TAP(X_ENT));
+             SEND_STRING("C>");
+             SEND_STRING(SS_RALT("-"));
+             SEND_STRING("Windows");
+             SEND_STRING(SS_RALT("-"));
+             SEND_STRING("Szstem32");
+             SEND_STRING(SS_RALT("-"));
+             SEND_STRING("DisplazSwitch.exe ");
+             SEND_STRING(SS_LSFT("7"));
+             SEND_STRING("clone");
+             _delay_ms(10);
+             SEND_STRING(SS_TAP(X_ENT));
+             _delay_ms(3000);
+             SEND_STRING("exit" SS_DELAY(10) SS_TAP(X_ENT));
+         } else {
+             // when keycode WM_ONED is released
+         }
+         break;
+     case WM_TWOD:
+         if (record->event.pressed) {
+             SEND_STRING(SS_LGUI("s"));
+             _delay_ms(500);
+             SEND_STRING("cmd" SS_DELAY(10) SS_TAP(X_ENT));
+             _delay_ms(500);
+             //SEND_STRING("C:\\Windows\\System32\\DisplaySwitch.exe /extend"SS_TAP(X_ENT));
+             SEND_STRING("C>");
+             SEND_STRING(SS_RALT("-"));
+             SEND_STRING("Windows");
+             SEND_STRING(SS_RALT("-"));
+             SEND_STRING("Szstem32");
+             SEND_STRING(SS_RALT("-"));
+             SEND_STRING("DisplazSwitch.exe ");
+             SEND_STRING(SS_LSFT("7"));
+             SEND_STRING("extend");
+             _delay_ms(10);
+             SEND_STRING(SS_TAP(X_ENT));
+             _delay_ms(3000);
+             SEND_STRING("exit" SS_DELAY(10) SS_TAP(X_ENT));
+         } else {
+             // when keycode WM_TWOD is released
+         }
+         break;
         case CK_00:
             if (record->event.pressed) {
                 // when keycode CK_00 is pressed
