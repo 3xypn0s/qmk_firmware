@@ -506,7 +506,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          case WM_ONED:
          if (record->event.pressed) {
              SEND_STRING(SS_LGUI("s") SS_DELAY(500));
-             SEND_STRING("cmd" SS_DELAY(10) SS_TAP(X_ENT) SS_DELAY(500));
+             SEND_STRING("cmd" SS_DELAY(50) SS_TAP(X_ENT) SS_DELAY(1000));
              //SEND_STRING("C:\\Windows\\System32\\DisplaySwitch.exe /clone"SS_TAP(X_ENT));
              SEND_STRING("C>");
              SEND_STRING(SS_RALT("-"));
@@ -517,16 +517,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              SEND_STRING("DisplazSwitch.exe ");
              SEND_STRING(SS_LSFT("7"));
              SEND_STRING("clone");
-             SEND_STRING(SS_DELAY(10) SS_TAP(X_ENT) SS_DELAY(3000));
-             SEND_STRING("exit" SS_DELAY(10) SS_TAP(X_ENT));
+             SEND_STRING(SS_DELAY(50) SS_TAP(X_ENT) SS_DELAY(6000));
+             SEND_STRING("exit" SS_DELAY(50) SS_TAP(X_ENT));
          } else {
              // when keycode WM_ONED is released
          }
          break;
      case WM_TWOD:
          if (record->event.pressed) {
-             SEND_STRING(SS_LGUI("s") SS_DELAY(500));
-             SEND_STRING("cmd" SS_DELAY(10) SS_TAP(X_ENT) SS_DELAY(500));
+             SEND_STRING(SS_LGUI("s") SS_DELAY(1000));
+             SEND_STRING("cmd" SS_DELAY(50) SS_TAP(X_ENT) SS_DELAY(1000));
              //SEND_STRING("C:\\Windows\\System32\\DisplaySwitch.exe /extend"SS_TAP(X_ENT));
              SEND_STRING("C>");
              SEND_STRING(SS_RALT("-"));
@@ -537,8 +537,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
              SEND_STRING("DisplazSwitch.exe ");
              SEND_STRING(SS_LSFT("7"));
              SEND_STRING("extend");
-             SEND_STRING(SS_DELAY(10) SS_TAP(X_ENT) SS_DELAY(3000));
-             SEND_STRING("exit" SS_DELAY(10) SS_TAP(X_ENT));
+             SEND_STRING(SS_DELAY(50) SS_TAP(X_ENT) SS_DELAY(6000));
+             SEND_STRING("exit" SS_DELAY(50) SS_TAP(X_ENT));
          } else {
              // when keycode WM_TWOD is released
          }
@@ -552,7 +552,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
          case CK_VERS:
              if (record->event.pressed) {
                  // when keycode CK_VERS is pressed send version of keymap
-                 SEND_STRING("1.3.1 27.01.2022 1204utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
+                 SEND_STRING("1.3.2 27.01.2022 1307utc"); // VERSION 0.0.0 DD.MM.YYYY HHMMutc Time in UTC
              } else unregister_code16(keycode);
              break;
          case CK_XENT:
