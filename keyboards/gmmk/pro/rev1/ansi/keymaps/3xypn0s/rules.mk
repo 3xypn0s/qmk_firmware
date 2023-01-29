@@ -1,0 +1,4 @@
+BOOTMAGIC_ENABLE = yes     # Enable Bootmagic Lite
+KEY_OVERRIDE_ENABLE = yes
+RGB_MATRIX_ENABLE = yes
+MOUSEKEY_ENABLE = yes
